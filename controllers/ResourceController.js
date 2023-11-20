@@ -1,9 +1,14 @@
 const Resource = require("../models/Resource");
 
 // Gets All Training Resources
-exports.getResources = async (req, res) => {
+exports.getResources = async (req, res, next) => {
   // TODO: Implement find to get all resources
   // Return 200 status with success: true and data: your resources
+  Resource.find( {}, (error, resources) => {
+  if (error) next(error);
+  req.data = resources;
+  next();
+});
 };
 
 // Get Single Training Resource
