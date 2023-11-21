@@ -5,7 +5,6 @@ const layouts = require("express-ejs-layouts");
 const connectDB = require("./config/db");
 const homeController = require("./controllers/HomeController");
 const resourceController = require("./controllers/ResourceController");
-
 // Load env variables
 dotenv.config({ path: "./config/config.env" });
 
@@ -31,10 +30,10 @@ app.get("/", homeController.showIndex);
 
 // Training Resources API Routes
 app.get("/api/resources", resourceController.getResources);
-//app.get("/api/resources/:id", resourceController.getSingleResource);
-//app.post("/api/resources", resourceController.createResource);
-//app.put("/api/resources/:id", resourceController.updateResource);
-//app.delete("/api/resources/:id", resourceController.deleteResource);
+app.get("/api/resources/:id", resourceController.getSingleResource);
+app.post("/api/resources", resourceController.createResource);
+app.put("/api/resources/:id", resourceController.updateResource);
+app.delete("/api/resources/:id", resourceController.deleteResource);
 
 // Init & Listen on defined port number
 const PORT = 8000;
